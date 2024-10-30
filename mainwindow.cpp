@@ -83,7 +83,7 @@ void MainWindow::handleGameOver(bool won)
     ui->messageLabel->setAlignment(Qt::AlignCenter);
     if (won) {
         ui->messageLabel->setText("You Win!");
-        ui->messageLabel->setStyleSheet("QLabel { color : green; font-size: 15px; font-weight: bold; }");
+        ui->messageLabel->setStyleSheet("QLabel { c`olor : green; font-size: 15px; font-weight: bold; }");
     } else {
         ui->messageLabel->setText("You Lose!");
         ui->messageLabel->setStyleSheet("QLabel { color : red; font-size: 15px; font-weight: bold; }");
