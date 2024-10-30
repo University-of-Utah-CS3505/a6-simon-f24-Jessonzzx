@@ -296,15 +296,15 @@
 	"HEADERS" : 
 	[
 		[
-			"E:/CS3505/a6-simon-f24-Jessonzzx/A6/mainwindow.h",
+			"E:/CS3505/a6-simon-f24-Jessonzzx/A6/Model.h",
 			"MU",
-			"EWIEGA46WW/moc_mainwindow.cpp",
+			"EWIEGA46WW/moc_Model.cpp",
 			null
 		],
 		[
-			"E:/CS3505/a6-simon-f24-Jessonzzx/A6/model.h",
+			"E:/CS3505/a6-simon-f24-Jessonzzx/A6/mainwindow.h",
 			"MU",
-			"EWIEGA46WW/moc_model.cpp",
+			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
 		]
 	],
@@ -379,9 +379,9 @@
 	"SETTINGS_FILE" : "E:/CS3505/a6-simon-f24-Jessonzzx/A6/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/A6_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/Model.cpp", "MU", null ],
 		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/main.cpp", "MU", null ],
-		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/mainwindow.cpp", "MU", null ],
-		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/model.cpp", "MU", null ]
+		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/mainwindow.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

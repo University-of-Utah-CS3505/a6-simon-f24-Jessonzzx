@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "model.h"
+#include "Model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,9 +26,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    model *model;
+    Model *model;
 
     void resetUI();
     void enablePlayerButtons(bool enable);
 };
+
 #endif // MAINWINDOW_H

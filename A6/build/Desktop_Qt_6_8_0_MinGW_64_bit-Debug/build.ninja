@@ -73,9 +73,9 @@ build CMakeFiles/A6.dir/mainwindow.cpp.obj: CXX_COMPILER__A6_unscanned_Debug E$:
   OBJECT_DIR = CMakeFiles\A6.dir
   OBJECT_FILE_DIR = CMakeFiles\A6.dir
 
-build CMakeFiles/A6.dir/model.cpp.obj: CXX_COMPILER__A6_unscanned_Debug E$:/CS3505/a6-simon-f24-Jessonzzx/A6/model.cpp || cmake_object_order_depends_target_A6
+build CMakeFiles/A6.dir/Model.cpp.obj: CXX_COMPILER__A6_unscanned_Debug E$:/CS3505/a6-simon-f24-Jessonzzx/A6/Model.cpp || cmake_object_order_depends_target_A6
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\A6.dir\model.cpp.obj.d
+  DEP_FILE = CMakeFiles\A6.dir\Model.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -IE:/CS3505/a6-simon-f24-Jessonzzx/A6/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/A6_autogen/include -isystem E:/Qt/6.8.0/mingw_64/include/QtCore -isystem E:/Qt/6.8.0/mingw_64/include -isystem E:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem E:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem E:/Qt/6.8.0/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\A6.dir
@@ -89,7 +89,7 @@ build CMakeFiles/A6.dir/model.cpp.obj: CXX_COMPILER__A6_unscanned_Debug E$:/CS35
 #############################################
 # Link the executable A6.exe
 
-build A6.exe: CXX_EXECUTABLE_LINKER__A6_Debug CMakeFiles/A6.dir/A6_autogen/mocs_compilation.cpp.obj CMakeFiles/A6.dir/main.cpp.obj CMakeFiles/A6.dir/mainwindow.cpp.obj CMakeFiles/A6.dir/model.cpp.obj | E$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a E$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a E$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a E$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || A6_autogen A6_autogen_timestamp_deps
+build A6.exe: CXX_EXECUTABLE_LINKER__A6_Debug CMakeFiles/A6.dir/A6_autogen/mocs_compilation.cpp.obj CMakeFiles/A6.dir/main.cpp.obj CMakeFiles/A6.dir/mainwindow.cpp.obj CMakeFiles/A6.dir/Model.cpp.obj | E$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a E$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a E$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a E$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || A6_autogen A6_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = E:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a  E:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a  E:/Qt/6.8.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  E:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
