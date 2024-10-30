@@ -14,25 +14,15 @@ public:
     void resetGame();
 
 signals:
-    /// @brief Signal that display the colors Sequence
-    /// @param color
-    /// @param delay
+    // Signals no need comments as long as they are named descriptively.
     void displaySequence(int color, int delay);
-    /// @brief Signal that can update the progress bar
-    /// @param progress
     void updateProgress(int progress);
-    /// @brief Signal to over the game and show result
-    /// @param won
     void gameOver(bool won);
-    /// @brief Signal to change the score
-    /// @param newScore
     void scoreChanged(int newScore);
-    /// @brief Signal to enable the red and blue buttons
-    /// @param enable
     void enablePlayerButtons(bool enable);
 
 private:
-    QVector<int> sequence;
+    QVector<int> colorSequence;
     int currentMove;
     int delay;
     int score;

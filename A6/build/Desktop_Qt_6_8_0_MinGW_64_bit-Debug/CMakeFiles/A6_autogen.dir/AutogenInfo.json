@@ -287,7 +287,8 @@
 		"E:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-relwithdebinfo.cmake",
 		"E:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake",
 		"E:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake",
-		"E:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/GNUInstallDirs.cmake"
+		"E:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/GNUInstallDirs.cmake",
+		"E:/CS3505/a6-simon-f24-Jessonzzx/A6/resources.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "E:/CS3505/a6-simon-f24-Jessonzzx/A6",
 	"CROSS_CONFIG" : false,
@@ -296,15 +297,15 @@
 	"HEADERS" : 
 	[
 		[
-			"E:/CS3505/a6-simon-f24-Jessonzzx/A6/Model.h",
-			"MU",
-			"EWIEGA46WW/moc_Model.cpp",
-			null
-		],
-		[
 			"E:/CS3505/a6-simon-f24-Jessonzzx/A6/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"E:/CS3505/a6-simon-f24-Jessonzzx/A6/model.h",
+			"MU",
+			"EWIEGA46WW/moc_model.cpp",
 			null
 		]
 	],
@@ -379,9 +380,9 @@
 	"SETTINGS_FILE" : "E:/CS3505/a6-simon-f24-Jessonzzx/A6/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/A6_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/Model.cpp", "MU", null ],
 		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/main.cpp", "MU", null ],
-		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/mainwindow.cpp", "MU", null ]
+		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/mainwindow.cpp", "MU", null ],
+		[ "E:/CS3505/a6-simon-f24-Jessonzzx/A6/model.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
