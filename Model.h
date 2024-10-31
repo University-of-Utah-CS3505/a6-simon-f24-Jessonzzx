@@ -10,7 +10,7 @@ class Model : public QObject
 public:
     explicit Model(QObject *parent = nullptr);
     void startGame();
-    void playerProgress(int color);
+    void playerProgress(int color); // Processes the player's progress by checking if their input matches the current sequence.
     void resetGame();
 
 signals:
@@ -24,11 +24,11 @@ signals:
 
 private:
     QVector<int> colorSequence;
-    int currentMove;
+    int currentColor;
     int delay;
     int score;
 
-    void generateNextMove();
+    void generateNextColor(); //  Generates the next random color to be added to the sequence.
     void playSequence();
     void incrementScore();
     void flashNextButton(int index);

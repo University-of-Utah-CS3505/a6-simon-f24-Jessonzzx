@@ -4,7 +4,7 @@
 
 Model::Model(QObject *parent)
     : QObject(parent)
-    , currentMove(0)
+    , currentColor(0)
     , delay(1000)
     , score(0)
 {}
@@ -12,23 +12,23 @@ Model::Model(QObject *parent)
 void Model::startGame()
 {
     colorSequence.clear();
-    currentMove = 0;
+    currentColor = 0;
     delay = 1000;
     score = 0;
     emit scoreChanged(score); // Update score to 0 at the beginning of the game
-    generateNextMove();
+    generateNextColor();
     playSequence();
 }
 
-void Model::generateNextMove()
+void Model::generateNextColor()
 {
-    int nextMove = QRandomGenerator::global()->bounded(2);
-    colorSequence.append(nextMove);
+    int nextColor = QRandomGenerator::global()->bounded(2);
+    colorSequence.append(nextColor);
 }
 
 void Model::playSequence()
 {
-    currentMove = 0;
+    currentColor = 0;
     emit enablePlayerButtons(false); // Disable buttons during computer's turn
     int roundDelay = 1000;
 
@@ -62,13 +62,13 @@ void Model::flashNextButton(int index)
 
 void Model::playerProgress(int color)
 {
-    if (colorSequence[currentMove] == color) {
-        currentMove++;
-        emit updateProgress((currentMove * 100) / colorSequence.size());
+    if (colorSequence[currentColor] == color) {
+        currentColor++;
+        emit updateProgress((currentColor * 100) / colorSequence.size());
 
-        if (currentMove == colorSequence.size()) {
+        if (currentColor == colorSequence.size()) {
             incrementScore();
-            generateNextMove();
+            generateNextColor();
             QTimer::singleShot(500, this, &Model::playSequence);
         }
     } else {

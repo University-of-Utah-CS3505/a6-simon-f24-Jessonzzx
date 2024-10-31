@@ -112,6 +112,7 @@ void MainWindow::fireCannonball(QPushButton *targetButton)
 
     double angle = (qAtan2(targetCenterY - turretCenterY, targetCenterX - turretCenterX) * 180 / M_PI) + 90;
 
+    // Rotate the turret when Fire.
     QPixmap originalPixmap(":/turret.png");
     QTransform transform;
     transform.rotate(angle);
@@ -122,7 +123,7 @@ void MainWindow::fireCannonball(QPushButton *targetButton)
     cannonball->setGeometry(turretCenterX, turretCenterY, 20, 20);
     cannonball->setStyleSheet("background-color: black; border-radius: 10px;");
     cannonball->show();
-
+    // Blast effect.
     QLabel *blast = new QLabel(this);
     blast->setPixmap(QPixmap(":/blast.png"));
     blast->setGeometry(targetCenterX - 20, targetCenterY - 20, 40, 40);  // Center the blast on the target
@@ -134,10 +135,10 @@ void MainWindow::fireCannonball(QPushButton *targetButton)
     animation->setStartValue(QRect(turretCenterX, turretCenterY, 20, 20));
     animation->setEndValue(QRect(targetCenterX - 10, targetCenterY - 10, 20, 20));
 
-    connect(animation, &QPropertyAnimation::finished, this, [cannonball, blast]() {
+    connect(animation, &QPropertyAnimation::finished, this, [cannonball, blast, this]() {
         delete cannonball;
         blast->show();
-        QTimer::singleShot(200, [blast]() {
+        QTimer::singleShot(200, this, [blast]() {
             delete blast;
         });
     });
