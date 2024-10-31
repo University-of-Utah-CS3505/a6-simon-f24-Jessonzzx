@@ -1,11 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QLabel>
 #include <QMainWindow>
-#include "Model.h"
 #include <QPropertyAnimation>
 #include <QPushButton>
-#include <QLabel>
+#include "Model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

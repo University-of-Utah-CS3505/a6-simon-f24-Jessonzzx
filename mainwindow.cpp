@@ -1,7 +1,7 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include <QTimer>
 #include <QPropertyAnimation>
+#include <QTimer>
+#include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,12 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(model, &Model::enablePlayerButtons, this, &MainWindow::enablePlayerButtons);
 
     // These are the functions to connect the Cannonball to the correct button and trigger them.
-    connect(ui->startButton, &QPushButton::clicked, this, [this]() {
-        fireCannonball(ui->startButton); // Fire at start
-        model->startGame();
-    });
     connect(ui->redButton, &QPushButton::clicked, this, [this]() {
-        fireCannonball(ui->redButton);  // Fire at red button
+        fireCannonball(ui->redButton); // Fire at red button
         model->playerProgress(0);
     });
 
@@ -83,10 +79,12 @@ void MainWindow::handleGameOver(bool won)
     ui->messageLabel->setAlignment(Qt::AlignCenter);
     if (won) {
         ui->messageLabel->setText("You Win!");
-        ui->messageLabel->setStyleSheet("QLabel { c`olor : green; font-size: 15px; font-weight: bold; }");
+        ui->messageLabel->setStyleSheet(
+            "QLabel { c`olor : green; font-size: 15px; font-weight: bold; }");
     } else {
         ui->messageLabel->setText("You Lose!");
-        ui->messageLabel->setStyleSheet("QLabel { color : red; font-size: 15px; font-weight: bold; }");
+        ui->messageLabel->setStyleSheet(
+            "QLabel { color : red; font-size: 15px; font-weight: bold; }");
     }
     ui->redButton->setEnabled(false);
     ui->blueButton->setEnabled(false);
@@ -97,7 +95,8 @@ void MainWindow::updateScore(int newScore)
     ui->scoreLabel->setText("Score: " + QString::number(newScore));
 }
 
-void MainWindow::fireCannonball(QPushButton *targetButton) {
+void MainWindow::fireCannonball(QPushButton *targetButton)
+{
     enablePlayerButtons(false);
 
     // Get the center position of the turret
@@ -109,7 +108,9 @@ void MainWindow::fireCannonball(QPushButton *targetButton) {
     int targetCenterX = targetGeometry.x() + (targetGeometry.width() / 2);
     int targetCenterY = targetGeometry.y() + (targetGeometry.height() / 2);
 
-    double angle = (qAtan2(targetCenterY - turretCenterY, targetCenterX - turretCenterX) * 180 / M_PI)+90;
+    double angle = (qAtan2(targetCenterY - turretCenterY, targetCenterX - turretCenterX) * 180
+                    / M_PI)
+                   + 90;
 
     // Apply rotation to the turret QLabel using QTransform
     QPixmap originalPixmap(":/turret.png");
@@ -126,16 +127,9 @@ void MainWindow::fireCannonball(QPushButton *targetButton) {
 
     // Animate the cannonball towards the target button
     QPropertyAnimation *animation = new QPropertyAnimation(cannonball, "geometry");
-    animation->setDuration(500);  // Time to reach the target
+    animation->setDuration(500); // Time to reach the target
     animation->setStartValue(QRect(turretCenterX, turretCenterY, 20, 20));
     animation->setEndValue(QRect(targetCenterX - 10, targetCenterY - 10, 20, 20));
-
-    // Handle the end of the animation
-    connect(animation, &QPropertyAnimation::finished, this, [this, cannonball, targetButton]() {
-        delete cannonball;
-        targetButton->click();
-        enablePlayerButtons(true);
-    });
 
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 }

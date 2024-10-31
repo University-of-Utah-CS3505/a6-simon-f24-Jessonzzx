@@ -30,6 +30,7 @@ private:
     void generateNextMove();
     void playSequence();
     void incrementScore();
+    void flashNextButton(int index);
 };
 
 #endif // MODEL_H

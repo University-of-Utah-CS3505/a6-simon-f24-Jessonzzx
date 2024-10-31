@@ -3,13 +3,15 @@
 #include <QTimer>
 
 Model::Model(QObject *parent)
-    : QObject(parent), currentMove(0), delay(1000), score(0) {
-
-}
+    : QObject(parent)
+    , currentMove(0)
+    , delay(1000)
+    , score(0)
+{}
 
 void Model::startGame()
 {
-    sequence.clear();
+    colorSequence.clear();
     currentMove = 0;
     delay = 1000; // Initial delay
     score = 0;
@@ -21,44 +23,38 @@ void Model::startGame()
 void Model::generateNextMove()
 {
     int nextMove = QRandomGenerator::global()->bounded(2);
-    sequence.append(nextMove);
+    colorSequence.append(nextMove);
 }
 
 void Model::playSequence()
 {
     currentMove = 0;
+    emit enablePlayerButtons(false);  // Disable buttons during computer's turn
 
-    // Schedule each button flash sequentially
-    for (int i = 0; i < sequence.size(); ++i) {
-        QTimer::singleShot(i * delay, this, [this, i]() {
-            emit displaySequence(sequence[i], delay);
-        });
-    }
+    // Start flashing sequence with the first button
+    flashNextButton(0);
 
-    // After the flash, enable the button to let user click
-    QTimer::singleShot(sequence.size() * delay, this, [this]() {
-        emit updateProgress(0);
-        emit scoreChanged(score);
-        emit enablePlayerButtons(true);
-    });
-
+    // Adjust delay for next round, if needed
     delay = qMax(100, delay - 50);
 }
 
-void Model::playerProgress(int color)
+void Model::flashNextButton(int index)
 {
-    if (sequence[currentMove] == color) {
-        currentMove++;
-        emit updateProgress((currentMove * 100) / sequence.size());
-
-        if (currentMove == sequence.size()) {
-            incrementScore();
-            generateNextMove();
-            QTimer::singleShot(500, this, &Model::playSequence);
-        }
-    } else {
-        emit gameOver(false);
+    if (index >= colorSequence.size()) {
+        // All flashing is done, now enable buttons for player's turn
+        emit updateProgress(0);
+        emit scoreChanged(score);
+        emit enablePlayerButtons(true);
+        return;
     }
+
+    // Flash the current button
+    emit displaySequence(colorSequence[index], delay);
+
+    // Schedule the next flash after `delay` milliseconds
+    QTimer::singleShot(delay, this, [this, index]() {
+        flashNextButton(index + 1);  // Recursive call to flash the next button
+    });
 }
 
 void Model::incrementScore()
