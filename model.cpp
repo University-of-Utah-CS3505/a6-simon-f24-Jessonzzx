@@ -13,7 +13,7 @@ void Model::startGame()
 {
     colorSequence.clear();
     currentMove = 0;
-    delay = 1000; // Initial delay
+    delay = 1000;
     score = 0;
     emit scoreChanged(score); // Update score to 0 at the beginning of the game
     generateNextMove();
@@ -30,30 +30,30 @@ void Model::playSequence()
 {
     currentMove = 0;
     emit enablePlayerButtons(false); // Disable buttons during computer's turn
+    int roundDelay = 1000;
 
-    // Start flashing sequence with the first button
-    flashNextButton(0);
+    QTimer::singleShot(roundDelay, this, [this]() {
+        flashNextButton(0);  // Start flashing the buttons
+    });
 
-    // Adjust delay for next round, if needed
     delay = qMax(100, delay - 50);
 }
 
 void Model::flashNextButton(int index)
 {
     if (index >= colorSequence.size()) {
-        // All flashing is done, now enable buttons for player's turn
+        // When all flashing is done, enable buttons for player's turn
         emit updateProgress(0);
         emit scoreChanged(score);
         emit enablePlayerButtons(true);
         return;
     }
 
-    // Flash the current button
+    // Flash the button
     emit displaySequence(colorSequence[index], delay);
 
-    // Schedule the next flash after `delay` milliseconds
     QTimer::singleShot(delay, this, [this, index]() {
-        flashNextButton(index + 1); // Recursive call to flash the next button
+        flashNextButton(index + 1);
     });
 }
 
@@ -69,7 +69,7 @@ void Model::playerProgress(int color)
             QTimer::singleShot(500, this, &Model::playSequence);
         }
     } else {
-        emit gameOver(false);
+        emit gameOver(true);
     }
 }
 

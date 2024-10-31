@@ -30,8 +30,8 @@ private slots:
     /// @param progress current progress in percentage
     void handleProgressUpdate(int progress);
     /// @brief Slot to handle game over logic and display result.
-    /// @param won player win or not
-    void handleGameOver(bool won);
+    /// @param over game over or not
+    void handleGameOver(bool over);
     /// @brief Slot to update the player's score in the UI.
     /// @param newScore new score to display
     void updateScore(int newScore);
@@ -48,6 +48,9 @@ private:
     /// @brief Fire a cannonball towards a target button.
     /// @param targetButton the target
     void fireCannonball(QPushButton *targetButton);
+    /// @brief Enable the start button and change it to green when enable
+    /// @param enable
+    void enableStartButton(bool enable);
 };
 
 #endif // MAINWINDOW_H

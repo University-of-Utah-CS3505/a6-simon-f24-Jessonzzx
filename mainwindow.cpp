@@ -11,8 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     //connect the startButton
     this->setCursor(Qt::CrossCursor);
+    enableStartButton(true);
 
     connect(ui->startButton, &QPushButton::clicked, this, [this]() {
+        enableStartButton(false);
         model->startGame();
         resetUI();
     });
@@ -44,10 +46,9 @@ MainWindow::~MainWindow()
 void MainWindow::resetUI()
 {
     ui->progressBar->setValue(0);
-    ui->startButton->setEnabled(false);
+    enableStartButton(false);
     ui->messageLabel->clear();
-    ui->redButton->setEnabled(false);
-    ui->blueButton->setEnabled(false);
+    enablePlayerButtons(false);
     ui->scoreLabel->setText("Score: 0");
 }
 
@@ -55,6 +56,15 @@ void MainWindow::enablePlayerButtons(bool enable)
 {
     ui->redButton->setEnabled(enable);
     ui->blueButton->setEnabled(enable);
+}
+void MainWindow::enableStartButton(bool enable)
+{
+    ui->startButton->setEnabled(enable);
+    if (enable) {
+        ui->startButton->setStyleSheet("background-color: green;");
+    } else {
+        ui->startButton->setStyleSheet("");
+    }
 }
 
 void MainWindow::handleDisplaySequence(int color, int delay)
@@ -73,21 +83,16 @@ void MainWindow::handleProgressUpdate(int progress)
     ui->progressBar->setValue(progress);
 }
 
-void MainWindow::handleGameOver(bool won)
+void MainWindow::handleGameOver(bool over)
 {
-    ui->startButton->setEnabled(true);
+    enableStartButton(true);
     ui->messageLabel->setAlignment(Qt::AlignCenter);
-    if (won) {
-        ui->messageLabel->setText("You Win!");
-        ui->messageLabel->setStyleSheet(
-            "QLabel { c`olor : green; font-size: 15px; font-weight: bold; }");
-    } else {
+    if (over) {
         ui->messageLabel->setText("You Lose!");
         ui->messageLabel->setStyleSheet(
-            "QLabel { color : red; font-size: 15px; font-weight: bold; }");
+            "QLabel { color : red; font-size: 30px; font-weight: bold; }");
     }
-    ui->redButton->setEnabled(false);
-    ui->blueButton->setEnabled(false);
+    enablePlayerButtons(false);
 }
 
 void MainWindow::updateScore(int newScore)

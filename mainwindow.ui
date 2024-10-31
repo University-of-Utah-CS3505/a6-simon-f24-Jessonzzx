@@ -48,14 +48,22 @@
      <widget class="QLabel" name="scoreLabel">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>130</y>
-        <width>58</width>
-        <height>21</height>
+        <x>300</x>
+        <y>110</y>
+        <width>91</width>
+        <height>51</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Score:0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="redButton">
@@ -112,14 +120,23 @@
      <widget class="QLabel" name="messageLabel">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>160</y>
-        <width>91</width>
-        <height>41</height>
+        <x>240</x>
+        <y>240</y>
+        <width>251</width>
+        <height>71</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>30</pointsize>
+        <underline>false</underline>
+       </font>
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="turret">
@@ -135,7 +152,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../resources.qrc">:/turret.png</pixmap>
+       <pixmap resource="resources.qrc">:/turret.png</pixmap>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -196,6 +213,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
