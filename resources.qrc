@@ -2,5 +2,6 @@
     <qresource prefix="/image"/>
     <qresource prefix="/">
         <file>turret.png</file>
+        <file>blast.png</file>
     </qresource>
 </RCC>

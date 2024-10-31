@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(model, &Model::gameOver, this, &MainWindow::handleGameOver);
     connect(model, &Model::scoreChanged, this, &MainWindow::updateScore);
     connect(model, &Model::enablePlayerButtons, this, &MainWindow::enablePlayerButtons);
+    connect(model, &Model::resetButtonColors, this, &MainWindow::resetButtonColors);
 
     // These are the functions to connect the Cannonball to the correct button and trigger them.
     connect(ui->redButton, &QPushButton::clicked, this, [this]() {
@@ -122,14 +123,30 @@ void MainWindow::fireCannonball(QPushButton *targetButton)
     cannonball->setStyleSheet("background-color: black; border-radius: 10px;");
     cannonball->show();
 
+    QLabel *blast = new QLabel(this);
+    blast->setPixmap(QPixmap(":/blast.png"));
+    blast->setGeometry(targetCenterX - 20, targetCenterY - 20, 40, 40);  // Center the blast on the target
+    blast->setAlignment(Qt::AlignCenter);
+    blast->hide();
+
     QPropertyAnimation *animation = new QPropertyAnimation(cannonball, "geometry");
     animation->setDuration(500);
     animation->setStartValue(QRect(turretCenterX, turretCenterY, 20, 20));
     animation->setEndValue(QRect(targetCenterX - 10, targetCenterY - 10, 20, 20));
 
-    connect(animation, &QPropertyAnimation::finished, this, [this, cannonball]() {
+    connect(animation, &QPropertyAnimation::finished, this, [cannonball, blast]() {
         delete cannonball;
+        blast->show();
+        QTimer::singleShot(200, [blast]() {
+            delete blast;
+        });
     });
 
     animation->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+void MainWindow::resetButtonColors()
+{
+    ui->redButton->setStyleSheet("background-color: red;");
+    ui->blueButton->setStyleSheet("background-color: blue;");
 }

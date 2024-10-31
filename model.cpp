@@ -36,7 +36,7 @@ void Model::playSequence()
         flashNextButton(0);  // Start flashing the buttons
     });
 
-    delay = qMax(100, delay - 50);
+    delay = qMax(120, delay - 50); // Control the speed of flash
 }
 
 void Model::flashNextButton(int index)
@@ -49,11 +49,14 @@ void Model::flashNextButton(int index)
         return;
     }
 
-    // Flash the button
-    emit displaySequence(colorSequence[index], delay);
+    emit resetButtonColors();
+    QTimer::singleShot(100, this, [this, index]() {
+        // Flash the current button in the sequence
+        emit displaySequence(colorSequence[index], delay);
 
-    QTimer::singleShot(delay, this, [this, index]() {
-        flashNextButton(index + 1);
+        QTimer::singleShot(delay, this, [this, index]() {
+            flashNextButton(index + 1);
+        });
     });
 }
 

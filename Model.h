@@ -20,6 +20,7 @@ signals:
     void gameOver(bool won);
     void scoreChanged(int newScore);
     void enablePlayerButtons(bool enable);
+    void resetButtonColors();
 
 private:
     QVector<int> colorSequence;

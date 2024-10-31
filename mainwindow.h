@@ -51,6 +51,7 @@ private:
     /// @brief Enable the start button and change it to green when enable
     /// @param enable
     void enableStartButton(bool enable);
+    void resetButtonColors();
 };
 
 #endif // MAINWINDOW_H
