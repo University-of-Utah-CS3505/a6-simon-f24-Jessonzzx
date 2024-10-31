@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->startButton, &QPushButton::clicked, this, [this]() {
         enableStartButton(false);
+        fireCannonball(ui->startButton);
         model->startGame();
         resetUI();
     });
