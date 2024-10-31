@@ -29,7 +29,7 @@ void Model::generateNextMove()
 void Model::playSequence()
 {
     currentMove = 0;
-    emit enablePlayerButtons(false);  // Disable buttons during computer's turn
+    emit enablePlayerButtons(false); // Disable buttons during computer's turn
 
     // Start flashing sequence with the first button
     flashNextButton(0);
@@ -53,7 +53,7 @@ void Model::flashNextButton(int index)
 
     // Schedule the next flash after `delay` milliseconds
     QTimer::singleShot(delay, this, [this, index]() {
-        flashNextButton(index + 1);  // Recursive call to flash the next button
+        flashNextButton(index + 1); // Recursive call to flash the next button
     });
 }
 

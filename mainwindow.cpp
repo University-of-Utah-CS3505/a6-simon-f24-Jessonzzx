@@ -26,12 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // These are the functions to connect the Cannonball to the correct button and trigger them.
     connect(ui->redButton, &QPushButton::clicked, this, [this]() {
-        fireCannonball(ui->redButton); // Fire at red button
+        //fireCannonball(ui->redButton); // Fire at red button
         model->playerProgress(0);
     });
 
     connect(ui->blueButton, &QPushButton::clicked, this, [this]() {
-        fireCannonball(ui->blueButton); // Fire at Blue button
+        //fireCannonball(ui->blueButton); // Fire at Blue button
         model->playerProgress(1);
     });
 }
@@ -92,44 +92,5 @@ void MainWindow::handleGameOver(bool won)
 
 void MainWindow::updateScore(int newScore)
 {
-    ui->scoreLabel->setText("Score: " + QString::number(newScore));
-}
-
-void MainWindow::fireCannonball(QPushButton *targetButton)
-{
-    enablePlayerButtons(false);
-
-    // Get the center position of the turret
-    int turretCenterX = 270 + (171 / 2);
-    int turretCenterY = 280 + (181 / 2);
-
-    // Get the center position of the target button
-    QRect targetGeometry = targetButton->geometry();
-    int targetCenterX = targetGeometry.x() + (targetGeometry.width() / 2);
-    int targetCenterY = targetGeometry.y() + (targetGeometry.height() / 2);
-
-    double angle = (qAtan2(targetCenterY - turretCenterY, targetCenterX - turretCenterX) * 180
-                    / M_PI)
-                   + 90;
-
-    // Apply rotation to the turret QLabel using QTransform
-    QPixmap originalPixmap(":/turret.png");
-    QTransform transform;
-    transform.rotate(angle);
-    QPixmap rotatedPixmap = originalPixmap.transformed(transform, Qt::SmoothTransformation);
-    ui->turret->setPixmap(rotatedPixmap);
-
-    // Create a cannonball QLabel and will be fire at the turret’s center
-    QLabel *cannonball = new QLabel(this);
-    cannonball->setGeometry(turretCenterX, turretCenterY, 20, 20);
-    cannonball->setStyleSheet("background-color: black; border-radius: 10px;");
-    cannonball->show();
-
-    // Animate the cannonball towards the target button
-    QPropertyAnimation *animation = new QPropertyAnimation(cannonball, "geometry");
-    animation->setDuration(500); // Time to reach the target
-    animation->setStartValue(QRect(turretCenterX, turretCenterY, 20, 20));
-    animation->setEndValue(QRect(targetCenterX - 10, targetCenterY - 10, 20, 20));
-
-    animation->start(QAbstractAnimation::DeleteWhenStopped);
+    ui->scoreLabel->setText("Score: " + QString::number(newScore));//
 }

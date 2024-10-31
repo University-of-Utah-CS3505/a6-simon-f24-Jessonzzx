@@ -47,7 +47,7 @@ private:
     void enablePlayerButtons(bool enable);
     /// @brief Fire a cannonball towards a target button.
     /// @param targetButton the target
-    void fireCannonball(QPushButton *targetButton);
+    //void fireCannonball(QPushButton *targetButton);
 };
 
 #endif // MAINWINDOW_H
