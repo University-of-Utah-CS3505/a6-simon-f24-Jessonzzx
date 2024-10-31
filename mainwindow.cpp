@@ -26,12 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // These are the functions to connect the Cannonball to the correct button and trigger them.
     connect(ui->redButton, &QPushButton::clicked, this, [this]() {
-        //fireCannonball(ui->redButton); // Fire at red button
+        fireCannonball(ui->redButton); // Fire at red button
         model->playerProgress(0);
     });
 
     connect(ui->blueButton, &QPushButton::clicked, this, [this]() {
-        //fireCannonball(ui->blueButton); // Fire at Blue button
+        fireCannonball(ui->blueButton); // Fire at Blue button
         model->playerProgress(1);
     });
 }
@@ -93,4 +93,38 @@ void MainWindow::handleGameOver(bool won)
 void MainWindow::updateScore(int newScore)
 {
     ui->scoreLabel->setText("Score: " + QString::number(newScore));//
+}
+
+void MainWindow::fireCannonball(QPushButton *targetButton)
+{
+    int turretCenterX = 270 + (171 / 2);
+    int turretCenterY = 280 + (181 / 2);
+
+    QRect targetGeometry = targetButton->geometry();
+    int targetCenterX = targetGeometry.x() + (targetGeometry.width() / 2);
+    int targetCenterY = targetGeometry.y() + (targetGeometry.height() / 2);
+
+    double angle = (qAtan2(targetCenterY - turretCenterY, targetCenterX - turretCenterX) * 180 / M_PI) + 90;
+
+    QPixmap originalPixmap(":/turret.png");
+    QTransform transform;
+    transform.rotate(angle);
+    QPixmap rotatedPixmap = originalPixmap.transformed(transform, Qt::SmoothTransformation);
+    ui->turret->setPixmap(rotatedPixmap);
+
+    QLabel *cannonball = new QLabel(this);
+    cannonball->setGeometry(turretCenterX, turretCenterY, 20, 20);
+    cannonball->setStyleSheet("background-color: black; border-radius: 10px;");
+    cannonball->show();
+
+    QPropertyAnimation *animation = new QPropertyAnimation(cannonball, "geometry");
+    animation->setDuration(500);
+    animation->setStartValue(QRect(turretCenterX, turretCenterY, 20, 20));
+    animation->setEndValue(QRect(targetCenterX - 10, targetCenterY - 10, 20, 20));
+
+    connect(animation, &QPropertyAnimation::finished, this, [this, cannonball]() {
+        delete cannonball;
+    });
+
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
 }

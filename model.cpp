@@ -57,6 +57,22 @@ void Model::flashNextButton(int index)
     });
 }
 
+void Model::playerProgress(int color)
+{
+    if (colorSequence[currentMove] == color) {
+        currentMove++;
+        emit updateProgress((currentMove * 100) / colorSequence.size());
+
+        if (currentMove == colorSequence.size()) {
+            incrementScore();
+            generateNextMove();
+            QTimer::singleShot(500, this, &Model::playSequence);
+        }
+    } else {
+        emit gameOver(false);
+    }
+}
+
 void Model::incrementScore()
 {
     score += 10;
